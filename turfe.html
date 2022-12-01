@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TURFE</title>
+    <link rel="stylesheet" href="turfe.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Fira+Sans+Extra+Condensed&family=Lobster&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="Quantidade">
+        <h1>TURFE</h1>
+        <p>Quantidade de cavalos:</p>
+        <input id="quantidadeCavalos">
+        <p>Quantidade voltas:</p>
+        <input id="quantidadeVoltas">
+        <button id="quantidade--buton" onclick="registrar()">Inserir quantidade</button>
+        <div id="erroQTD"></div>
+        <p id="gif"><img src="assets/cavalo-imagem-animada-0047.gif" alt=""></p>
+    </div>
+    <div id="Nomes">
+        <p>Insira o nome dos cavalos:</p>
+        <input id="nomeCavalo" autofocus>
+        <button onclick="registrarNome()">Registrar nome</button>
+        <div id="erroNome"></div>
+    </div>
+    <div id="largada">
+        <h1 id="inciarLargada">LARGADA</h1>
+        <button id="iniciarCorrida" onclick="iniciar()">Iniciar Corrida!</button>
+        <p id="gif2"><img src="assets/cavalo-imagem-animada-0005.gif" alt=""></p>
+    </div>
+    <div id="mensagem">
+        <p id="volta">1 Volta</p>
+        <p id="mensagemCavalos"></p>
+    </div>
+    <div id="podium">
+        <h1>Corrida Finalizada!</h1>
+        <p id="Vencedor">BRANDAO</p>
+        <div id="vencedor">
+            <img src="assets/imagem_segundo.jpg" alt="" id="imagemSegundo">
+        </div>
+        <p id="Segundo">DANIEL</p>
+        <div class="segundo"></div>
+        <img src="assets/cavalo_vencedor.jpg" alt="" id="imagemVencedor">
+        <p id="terceiro">LUIS GUSTAVO</p>
+        <div class="terceiro"></div>
+        <img src="assets/cavalo_terceiro.jpg" alt="" id="imagemTerceiro">
+        <button id="botaoVoltar" onclick="voltar()">Voltar</button>
+    </div>
+</body>
+
+</html>
+
+<script>
+    var qtdCavalos = 0
+    var qtdVoltas = 0
+    var nomesCavalo = []
+    var contador = 0
+    var primeiroTempo = 999
+    var nomePrimeiroCavalo = ''
+    var segundoTempo = 999
+    var nomeSegundoCavalo = ''
+    var terceiroTempo = 999
+    var nomeTerceiroCavalo = ''
+
+
+    function registrar() {
+        qtdCavalos = Number(quantidadeCavalos.value)
+        qtdVoltas = Number(quantidadeVoltas.value)
+        if (qtdCavalos == '' || qtdVoltas == '' || isNaN(qtdCavalos) || isNaN(qtdVoltas) || qtdVoltas <= 0 || qtdCavalos < 3) {
+            erroQTD.innerHTML = `Insira os dados corretamente, você deve ter no mínimo 3 cavalos!`
+        }
+        else {
+            quantidadeCavalos.value = ''
+            quantidadeVoltas.value = ''
+            erroQTD.style.display = 'none'
+            gif.style.display = 'block'
+            setTimeout(() => {
+                Quantidade.style.display = 'none'
+                Nomes.style.display = 'flex'
+            }, 2000);
+        }
+    }
+    function registrarNome() {
+        if (nomeCavalo.value.length == 0) {
+            erroNome.innerHTML = `Insira um nome!`
+        }
+        else {
+            erroNome.innerHTML = ''
+
+            nomesCavalo.push({
+                nome: `${nomeCavalo.value}`,
+                tempovolta: 0,
+                tempoTotal: 0
+            })
+            nomeCavalo.value = ''
+
+            if (nomesCavalo.length == qtdCavalos) {
+                Nomes.style.display = 'none'
+                largada.style.display = 'flex'
+            }
+            else {
+                erroNome.innerHTML = `Ainda faltam cavalos para nomear!`
+            }
+        }
+
+
+    }
+
+    function iniciar() {
+        gif2.style.display = 'block'
+        mensagem.style.display = 'flex'
+        mensagemCavalos.innerHTML = ''
+        iniciarCorrida.innerText = 'Próxima Volta'
+        inciarLargada.innerText = 'CORRIDA EM ANDAMENTO'
+        var tempovolta = 0
+        var tempoGeral = 0
+
+        if (contador < qtdVoltas) {
+            for (let index = 0; index < nomesCavalo.length; index++) {
+                nomesCavalo[index].tempovolta = (Math.random() * 2 + 7).toFixed(1)
+                nomesCavalo[index].tempoTotal += Number(nomesCavalo[index].tempovolta)
+                tempovolta = Number(nomesCavalo[index].tempovolta).toFixed(1)
+                tempoGeral = Number(nomesCavalo[index].tempoTotal).toFixed(1)
+                mensagemCavalos.innerHTML += `Cavalo: ${nomesCavalo[index].nome} Tempo da volta: ${tempovolta} Tempo geral: ${tempoGeral}<br>`
+            }
+            volta.innerHTML = `Volta ${contador + 1}`
+
+            contador++
+        }
+        else {
+            largada.style.display = 'none'
+            mensagem.style.display = 'none'
+            podium.style.display = 'grid'
+            analisarRanking();
+        }
+    }
+
+    function analisarRanking() {
+        for (let index = 0; index < qtdCavalos; index++) {
+            if (nomesCavalo[index].tempoTotal < primeiroTempo) {
+                nomePrimeiroCavalo = nomesCavalo[index].nome
+                primeiroTempo = Number(nomesCavalo[index].tempoTotal)
+            }
+        }
+        for (let index = 0; index < qtdCavalos; index++) {
+            if (nomesCavalo[index].tempoTotal > primeiroTempo && nomesCavalo[index].tempoTotal < segundoTempo) {
+                segundoTempo = Number(nomesCavalo[index].tempoTotal)
+                nomeSegundoCavalo = nomesCavalo[index].nome
+            }
+        }
+        for (let index = 0; index < qtdCavalos; index++) {
+            if (nomesCavalo[index].tempoTotal > segundoTempo && nomesCavalo[index].tempoTotal < terceiroTempo) {
+                terceiroTempo = Number(nomesCavalo[index].tempoTotal)
+                nomeTerceiroCavalo = nomesCavalo[index].nome
+            }
+        }
+
+        Vencedor.innerHTML = `Vencedor: ${nomePrimeiroCavalo}!`
+        Segundo.innerHTML = `Segundo: ${nomeSegundoCavalo}`
+        terceiro.innerHTML = `Terceiro: ${nomeTerceiroCavalo}`
+    }
+
+    function voltar() {
+        window.location = 'turfe.html'
+    }
+</script>

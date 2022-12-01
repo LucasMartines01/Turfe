@@ -1,0 +1,223 @@
+#Nomes,
+#largada,
+#gif,
+#gif2 {
+    display: none;
+}
+
+body {
+    background-color: rgb(121, 65, 2);
+}
+
+#Quantidade {
+    background-color: rgb(230, 126, 8);
+    width: 600px;
+    margin: 10em auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-transform: uppercase;
+    border-radius: 50px;
+    font-family: 'Anton', sans-serif;
+}
+
+#Quantidade p {
+    font-family: 'Fira Sans Extra Condensed', sans-serif;
+    font-weight: bold;
+    margin-bottom: 0px;
+    font-size: 20px;
+}
+
+#Quantidade input {
+    width: 200px;
+    height: 30px;
+    border: 2px solid rgb(121, 65, 2);
+    ;
+    margin-bottom: 0.5em;
+    border-radius: 50px;
+    text-align: center;
+    font-family: 'Fira Sans Extra Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#Quantidade button {
+    padding: 10px 50px;
+    margin: 30px 0;
+    border: none;
+    background-color: rgb(4, 0, 233);
+    border-radius: 50px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: 'Fira Sans Extra Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#Quantidade button:hover {
+    transform: scale(1.05);
+}
+
+#Nomes {
+    background-color: rgb(230, 126, 8);
+    width: 600px;
+    margin: 10em auto;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-transform: uppercase;
+    border-radius: 50px;
+    font-family: 'Fira Sans Extra Condensed', sans-serif;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+#Nomes button {
+    padding: 10px 50px;
+    margin: 30px 0;
+    border: none;
+    background-color: rgb(4, 0, 233);
+    border-radius: 50px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: 'Fira Sans Extra Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#Nomes input {
+    width: 200px;
+    height: 30px;
+    border: 2px solid rgb(121, 65, 2);
+    ;
+    margin-bottom: 0.5em;
+    border-radius: 50px;
+    text-align: center;
+    font-family: 'Fira Sans Extra Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#erroNome {
+    color: red;
+    margin-bottom: 0.5em;
+}
+
+#erroQTD {
+    color: red;
+    margin-bottom: 0.5em;
+    font-size: 18px;
+}
+
+#largada {
+    background-color: rgb(230, 126, 8);
+    width: 600px;
+    margin: 5em auto 0px auto;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-transform: uppercase;
+    border-radius: 50px;
+    font-family: 'Fira Sans Extra Condensed', sans-serif;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+#largada button {
+    padding: 10px 50px;
+    margin: 30px 0;
+    border: none;
+    background-color: rgb(4, 0, 233);
+    border-radius: 50px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: 'Fira Sans Extra Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#mensagem {
+    background-color: rgb(230, 126, 8);
+    width: 600px;
+    margin: 1em auto;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-transform: uppercase;
+    border-radius: 50px;
+    font-family: 'Fira Sans Extra Condensed', sans-serif;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+#volta {
+    font-size: 30px;
+}
+
+#podium {
+    background-color: #FFFFFF;
+    display: none;
+    grid-template-columns: 250px 250px 250px;
+    grid-template-rows: 50px 30px 230px;
+    justify-items: center;
+    width: 760px;
+    margin: 10em auto;
+    border-radius: 50px;
+    gap: 15px;
+}
+
+#podium h1 {
+    font-family: 'Anton', sans-serif;
+    grid-column: 1 / span 3;
+    text-align: center;
+}
+
+#podium p {
+    font-family: 'Fira Sans Extra Condensed', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#podium #Vencedor {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#podium #Segundo {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#podium #terceiro{
+    grid-column: 3;
+    grid-row: 2;
+}
+
+#podium img{
+    width: 200px;
+    height: 200px;
+}
+
+#imagemVencedor{
+    grid-column: 2;
+    grid-row: 3;
+}
+
+#imagemTerceiro{
+    grid-column: 3;
+    grid-row: 3;
+}
+
+#botaoVoltar{
+    grid-column: 2;
+    padding: 10px 50px;
+    margin: 30px 0;
+    border: none;
+    background-color: rgb(4, 0, 233);
+    border-radius: 50px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: 'Fira Sans Extra Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
